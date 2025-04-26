@@ -1,0 +1,1153 @@
+/* Global Styles */
+:root {
+    /* Dark Theme - Black Background, Blue Accents */
+    --primary-bg: #000000;
+    --darker-bg: #000000; /* Keep black */
+    --secondary-bg: #080808; /* Very dark grey for subtle section difference if needed */
+    --primary-accent: #0d6efd; /* Bootstrap Blue */
+    --secondary-accent: #64a6ff; /* Lighter Blue */
+    --tertiary-accent: #9d4edd; /* Keep Purple for now, can remove if unused */
+    --serververse-accent: #ffa632; /* Keep Serververse brand color */
+    --text-color: #e9ecef; /* Light grey text */
+    --text-secondary: #adb5bd; /* Medium grey secondary text */
+    --glass-bg: rgba(20, 20, 20, 0.5); /* Darker glass effect */
+    --glass-border: rgba(100, 100, 100, 0.2); /* Grey border */
+    --card-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.4); /* Slightly stronger default shadow */
+    --selection-bg: rgba(13, 110, 253, 0.4); /* Blue selection */
+    --navbar-bg: rgba(0, 0, 0, 0.7); /* Semi-transparent black navbar */
+    --code-bg: #111111; /* Very dark grey code blocks */
+    --grid-color: rgba(60, 90, 130, 0.1); /* Subtle blue grid lines */
+    
+    /* Blue Gradients */
+    --gradient-main: linear-gradient(120deg, var(--primary-accent), var(--secondary-accent));
+    --gradient-subtle: linear-gradient(120deg, #054599, var(--primary-accent)); /* Darker blue to primary */
+    --gradient-serververse: linear-gradient(120deg, var(--serververse-accent), #ffc67a);
+
+    --gradient-1: var(--gradient-main);
+    --gradient-2: var(--gradient-subtle);
+    --gradient-3: var(--gradient-serververse);
+}
+
+/* Light Mode Theme - White Background, Blue Accents */
+body.light-theme {
+    --primary-bg: #ffffff;
+    --darker-bg: #ffffff;
+    --secondary-bg: #f8f9fa; /* Light grey for sections */
+    --text-color: #212529; /* Dark text */
+    --text-secondary: #495057; /* Darker grey secondary text */
+    --glass-bg: rgba(245, 245, 245, 0.7); /* Light glass */
+    --glass-border: rgba(0, 0, 0, 0.1); /* Subtle black border */
+    --card-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.12); /* Slightly stronger default shadow */
+    --navbar-bg: rgba(255, 255, 255, 0.8); /* Semi-transparent white navbar */
+    --primary-accent: #0d6efd; /* Keep same blue */
+    --secondary-accent: #64a6ff; /* Keep same lighter blue */
+    --grid-color: rgba(0, 0, 0, 0.08); /* Subtle black grid lines */
+    --code-bg: #f8f9fa; /* Light grey code blocks */
+
+    /* Blue gradients remain the same conceptually but use light mode vars */
+    --gradient-main: linear-gradient(120deg, var(--primary-accent), var(--secondary-accent));
+    --gradient-subtle: linear-gradient(120deg, #a8d8ff, var(--primary-accent)); /* Light blue to primary */
+}
+
+/* Light theme overrides for scrolled navbar */
+body.light-theme #navbar.scrolled {
+    background: rgba(255, 255, 255, 0.9); /* More opaque white */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+}
+
+/* Ensure text remains readable in light theme scrolled navbar */
+body.light-theme #navbar.scrolled .logo a,
+body.light-theme #navbar.scrolled .nav-links a {
+    color: var(--text-color); /* Use light theme text color */
+}
+
+body.light-theme #navbar.scrolled .theme-toggle {
+    color: var(--text-secondary); /* Use light theme secondary text color */
+    border-color: var(--glass-border);
+}
+
+body.light-theme #navbar.scrolled .theme-toggle:hover {
+    color: var(--primary-accent); 
+    border-color: var(--primary-accent);
+}
+
+body.light-theme .hero h1 {
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: var(--primary-accent);
+}
+
+body.light-theme .premium-icon {
+    color: var(--primary-accent);
+}
+
+body.light-theme #navbar {
+    border-bottom: 1px solid var(--glass-border);
+}
+
+body.light-theme .skill-group ul li::before {
+    color: var(--primary-accent);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: var(--primary-bg);
+    /* Simplified background - base color + subtle grid */
+    background-image: 
+        repeating-linear-gradient(90deg, transparent, transparent 60px, var(--grid-color) 60px, var(--grid-color) 61px),
+        repeating-linear-gradient(0deg, transparent, transparent 60px, var(--grid-color) 60px, var(--grid-color) 61px);
+    background-size: 100% 100%; /* Ensure grid covers */
+    background-attachment: fixed;
+    color: var(--text-color);
+    line-height: 1.7; /* Increased line-height for readability */
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Remove body::before ripple overlay */
+
+::selection {
+    background-color: var(--selection-bg);
+    color: var(--text-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1140px; /* Standard max-width */
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--secondary-accent); /* Use accent for links */
+    transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+a:hover {
+    color: var(--text-color);
+    opacity: 0.8; /* Subtle hover */
+}
+
+ul {
+    list-style-type: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove extra space below images */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1.2rem; /* Consistent heading margin */
+    line-height: 1.3;
+    font-weight: 600; /* Slightly less bold */
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem); /* Responsive font size */
+    font-weight: 700;
+}
+
+h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 2.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -12px; /* Adjust position */
+    left: 0;
+    width: 50px; /* Shorter underline */
+    height: 3px;
+    background: var(--gradient-1);
+}
+
+section {
+    padding: 6rem 0; /* Increased section padding */
+    min-height: auto; /* Remove min-height 100vh, except for hero maybe */
+    display: block; /* Change from flex to block for simpler layout */
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem; /* Slightly more padding */
+    border-radius: 6px; /* Slightly more rounded */
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+    border: 2px solid transparent;
+    letter-spacing: 0.5px;
+    margin: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background: transparent; /* Base style */
+    color: var(--secondary-accent); /* Base color */
+    border-color: var(--secondary-accent); /* Base border */
+}
+
+.btn:hover {
+    background: var(--secondary-accent);
+    color: var(--primary-bg);
+    transform: translateY(-3px); /* Slightly more lift */
+    box-shadow: 0 4px 15px rgba(100, 255, 218, 0.2);
+}
+
+.btn-primary {
+    background: var(--gradient-1);
+    color: var(--primary-bg); /* Adjust text color for gradient */
+    border-color: transparent;
+}
+
+.btn-primary:hover {
+    background: var(--gradient-1); /* Keep gradient */
+    opacity: 0.9;
+    transform: translateY(-3px); /* Match lift */
+    color: var(--primary-bg);
+    box-shadow: 0 6px 20px rgba(100, 255, 218, 0.3);
+}
+
+.btn-secondary {
+    /* Uses default btn styles */
+}
+
+.btn-secondary:hover {
+    /* Uses default btn:hover styles */
+}
+
+.btn-serververse {
+    background: var(--gradient-3);
+    color: var(--primary-bg);
+    border-color: transparent;
+}
+
+.btn-serververse:hover {
+    background: var(--gradient-3);
+    opacity: 0.9;
+    transform: translateY(-3px); /* Match lift */
+    color: var(--primary-bg);
+    box-shadow: 0 6px 20px rgba(255, 166, 50, 0.3);
+}
+
+/* Glass Card Styles - Simplified */
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px; /* Slightly larger radius */
+    box-shadow: var(--card-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    padding: 1.5rem; /* Add default padding */
+}
+
+.glass-card:hover {
+    transform: translateY(-7px); /* Increased bump */
+    box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.5); /* Stronger hover shadow (dark) */
+}
+
+/* Floating Navbar Styles - Cleaner */
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0; /* Use container padding */
+    z-index: 1000;
+    background: var(--navbar-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: none; /* Remove initial shadow */
+    transition: all 0.25s ease-in-out;
+}
+
+#navbar.scrolled {
+    padding: 0.75rem 0;
+    box-shadow: 0 5px 20px rgba(2, 12, 27, 0.5);
+    background: rgba(10, 25, 47, 0.9); /* Slightly darker on scroll */
+}
+
+#navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Inherits padding from .container */
+}
+
+.logo a {
+    font-size: 1.6rem; /* Slightly larger */
+    font-weight: 700;
+    color: var(--text-color);
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+/* Remove logo underline effect */
+.logo a::before {
+    display: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.8rem; /* Slightly more gap */
+}
+
+.nav-links a {
+    position: relative;
+    padding: 0.5rem 0;
+    color: var(--text-secondary); /* Subdue nav links slightly */
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%); /* Center underline */
+    background: var(--secondary-accent);
+    transition: width 0.25s ease;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-accent); /* Highlight on hover */
+    opacity: 1;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.8rem; /* Larger toggle icon */
+    color: var(--text-color);
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.theme-toggle {
+    font-size: 1.3rem; /* Larger theme icon */
+    margin-left: 1.5rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+}
+
+.theme-toggle:hover {
+    background: var(--glass-bg);
+    color: var(--secondary-accent);
+    transform: rotate(15deg);
+    border-color: var(--secondary-accent);
+}
+
+/* Hero Section - Simplified */
+.hero {
+    background: var(--primary-bg); /* Use base background */
+    /* Remove complex gradients/overlays */
+    position: relative;
+    min-height: 100vh; /* Keep hero full height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 100px; /* Adjust for navbar height */
+    overflow: hidden; /* Hide overflow */
+}
+
+/* Optional: Add a subtle gradient overlay or keep plain */
+.hero::before {
+     content: '';
+     position: absolute;
+     top: 0; left: 0; width: 100%; height: 100%;
+     background: radial-gradient(ellipse at bottom center, rgba(17, 34, 64, 0.5) 0%, transparent 70%);
+     z-index: 0;
+}
+
+.hero .container {
+    position: relative; /* Ensure content is above pseudo-elements */
+    z-index: 1;
+}
+
+.hero h1 {
+    margin-bottom: 1rem; /* Adjust spacing */
+    font-size: clamp(3rem, 6vw, 4.5rem); /* Larger hero font */
+    background: var(--gradient-main); /* Use main gradient */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    margin-bottom: 2.5rem;
+    color: var(--text-secondary);
+    max-width: 600px; /* Limit width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#typed-element {
+    color: var(--secondary-accent); /* Color the typed text */
+}
+
+.cta-buttons {
+    margin-top: 2.5rem;
+}
+
+/* About Section - Simplified */
+.about {
+    background: var(--secondary-bg); /* Simple background */
+}
+
+/* Remove ::before */
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content */
+    gap: 3rem;
+}
+
+.about-text {
+    max-width: 700px; /* Slightly wider */
+    text-align: center;
+    font-size: 1.1rem; /* Adjust font size */
+    color: var(--text-secondary);
+    line-height: 1.8; /* More line height for paragraphs */
+}
+
+.highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Auto-fit columns */
+    gap: 1.5rem;
+    width: 100%; /* Take full width */
+}
+
+.highlight-card {
+    padding: 2rem;
+    text-align: center;
+    /* Inherits .glass-card styles */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Remove ::before glow effect */
+
+.highlight-card i {
+    font-size: 2.8rem; /* Consistent icon size */
+    margin-bottom: 1rem;
+    color: var(--secondary-accent); /* Use accent color */
+}
+
+.highlight-card h3 {
+    font-size: 1.15rem; /* Slightly larger heading */
+    color: var(--text-color);
+    margin-top: 0.5rem; /* Add space above heading */
+}
+
+/* Skills Section - Cleaner */
+.skills {
+    background: var(--primary-bg); /* Alternate background */
+}
+
+/* Remove ::before */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Auto-fit columns */
+    gap: 2rem;
+}
+
+.skill-group {
+    /* Inherits .glass-card styles */
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-group::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-1);
+    opacity: 0.6;
+}
+
+.skill-group:hover {
+     /* Inherits .glass-card:hover styles */
+    transform: translateY(-5px) scale(1.01); /* More subtle scale */
+    box-shadow: 0 15px 35px rgba(2, 12, 27, 0.8);
+}
+
+.premium-icon.skill-icon {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-accent);
+    opacity: 0.6;
+}
+
+.skill-group h3 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.skill-group ul {
+    padding-left: 1.2rem; /* Indent list */
+}
+
+.skill-group ul li {
+    margin-bottom: 0.6rem;
+    color: var(--text-secondary);
+    position: relative;
+}
+
+.skill-group ul li::before {
+    content: '▹';
+    position: absolute;
+    left: -1.2rem;
+    color: var(--secondary-accent);
+    font-weight: bold;
+}
+
+/* Ventures Section */
+.ventures {
+    background: linear-gradient(to bottom, var(--secondary-bg), var(--primary-bg)); /* Subtle gradient */
+    padding: 6rem 0 8rem; /* Extra bottom padding */
+    border-top: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+/* Remove ::before */
+
+.serververse-card {
+    /* Inherits .glass-card styles */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 3rem;
+    max-width: 800px;
+    margin: 3rem auto 0; /* Add top margin */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Remove separate hover transform/shadow, use glass-card */
+
+.serververse-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--gradient-3);
+}
+
+.sv-logo {
+    width: 100px; /* Smaller logo */
+    height: 100px;
+    margin-bottom: 1.5rem;
+    border-radius: 50%;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.serververse-card:hover .sv-logo {
+    transform: scale(1.05); /* Subtle scale */
+}
+
+.sv-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    background: var(--gradient-3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.sv-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    line-height: 1.8;
+}
+
+/* Projects Section */
+.projects {
+    background: var(--primary-bg);
+}
+
+/* Remove ::before */
+
+.projects-grid {
+    display: grid;
+    /* Encourage 2-column layout for 4 items on wider screens, but allow flexibility */
+    grid-template-columns: 1fr; /* Mobile: 1 column */
+    gap: 2rem;
+}
+
+.project-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: all 0.25s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 32px -7px rgba(0, 0, 0, 0.5); /* Stronger hover shadow (dark) */
+}
+
+.project-image {
+    height: 220px; /* Taller image */
+    overflow: hidden;
+    position: relative;
+}
+
+.project-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(10, 25, 47, 0.9), transparent 60%); /* Adjusted gradient */
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-image::after {
+    opacity: 0.5;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.project-info {
+    padding: 1.5rem;
+    position: relative;
+}
+
+/* Remove ::before underline */
+
+.project-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color); /* Standard text color */
+}
+
+.project-info p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Cloud Future Section */
+.cloud-future {
+    background: var(--secondary-bg);
+}
+
+/* Remove ::before */
+
+.cloud-future-grid {
+    display: grid;
+    /* Encourage 2-column layout for 4 items on wider screens, but allow flexibility */
+    grid-template-columns: 1fr; /* Mobile: 1 column */
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.future-card {
+    /* Inherits .glass-card styles */
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.future-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-2);
+    opacity: 0.6;
+}
+
+.future-card h3 {
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.premium-icon.future-icon {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary-accent);
+    overflow: hidden;
+}
+
+.future-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* Contribution Section */
+.contribution {
+    background: var(--primary-bg);
+}
+
+/* Remove ::after and ::before */
+
+.contribution-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Auto-fit columns */
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.contribution-card {
+    /* Inherits .glass-card styles */
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Remove ::before */
+
+.contribution-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    color: var(--text-color);
+}
+
+.premium-icon.contribution-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary-accent);
+}
+
+.contribution-card p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.contribution-card .btn {
+    width: auto; /* Don't force full width */
+    margin-top: 1rem;
+}
+
+/* Code-like section styling - Refined */
+.code-block {
+    background: var(--code-bg);
+    border-radius: 8px; /* Standard radius */
+    padding: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    margin: 3rem 0;
+    border-left: 4px solid var(--secondary-accent); /* Use accent color */
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 0.25s ease;
+}
+
+.code-block:hover {
+    box-shadow: 0 9px 25px -5px rgba(0, 0, 0, 0.3); /* Stronger hover shadow (dark) */
+}
+
+/* Remove ::before pseudo-element */
+
+.code-line {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    position: relative;
+    padding-left: 2.5rem; /* More padding for line numbers */
+    font-size: 0.9rem;
+    white-space: pre-wrap; /* Allow wrapping */
+}
+
+.code-line::before {
+    content: attr(data-line);
+    position: absolute;
+    left: 0.5rem; /* Adjust position */
+    top: 0;
+    color: var(--text-secondary);
+    opacity: 0.6;
+    font-size: 0.85rem;
+    width: 1.5rem; /* Allocate space */
+    text-align: right;
+}
+
+.code-comment {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.code-keyword {
+    color: #c678dd; /* Keep specific colors */
+}
+
+.code-function {
+    color: var(--secondary-accent);
+}
+
+.code-string {
+    color: #98c379;
+}
+
+/* Contact Section */
+.contact {
+    background: var(--secondary-bg);
+    text-align: center;
+}
+
+/* Remove ::before */
+
+.contact h2 {
+    margin-bottom: 1.5rem;
+}
+
+.contact p {
+    font-size: 1.1rem; /* Consistent paragraph size */
+    margin-bottom: 2.5rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.contact-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Footer */
+footer {
+    background: var(--darker-bg); /* Darker footer */
+    padding: 3rem 0;
+    text-align: center;
+    border-top: 1px solid var(--glass-border);
+    position: relative;
+    margin-top: 4rem; /* Add margin above footer */
+}
+
+/* Remove ::before */
+
+.quote {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.copyright {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 1.5rem;
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Styles - Adjustments */
+@media screen and (max-width: 1200px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+    
+    h1 {
+       /* Using clamp now */
+    }
+    
+    h2 {
+       /* Using clamp now */
+    }
+    
+    section {
+        padding: 4rem 0;
+    }
+
+    .menu-toggle {
+        display: block;
+        z-index: 1002; /* Ensure it's above nav links */
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Start off-screen */
+        width: min(75vw, 300px); /* Responsive width */
+        height: 100vh;
+        background: var(--secondary-bg);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.3s ease-in-out; /* Use transform for performance */
+        transform: translateX(100%);
+        z-index: 1001;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        gap: 2rem; /* Increase gap in mobile menu */
+    }
+    
+    .nav-links.active {
+        transform: translateX(0); /* Slide in */
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+        color: var(--text-color);
+    }
+    
+    .serververse-card {
+        padding: 2rem;
+    }
+    
+    .about-content {
+        gap: 2rem;
+    }
+    
+    .highlights,
+    .skills-grid,
+    .cloud-future-grid,
+    .projects-grid,
+    .contribution-options {
+        grid-template-columns: 1fr; /* Single column */
+    }
+}
+
+@media screen and (max-width: 576px) {
+    h1 {
+        /* Using clamp now */
+    }
+    
+    h2 {
+       /* Using clamp now */
+    }
+    
+    section {
+        padding: 3rem 0;
+    }
+    
+    .hero h1 {
+       /* Using clamp now */
+    }
+    
+    .subtitle {
+        /* Using clamp now */
+    }
+    
+    .cta-buttons {
+        display: flex; /* Revert to flex for better button layout */
+        flex-direction: column; /* Stack vertically */
+        align-items: center; /* Center buttons */
+        gap: 1rem;
+    }
+    
+    .btn {
+        width: 80%; /* Adjust width */
+        max-width: 320px;
+        padding: 0.9rem 1rem; /* Adjust padding for smaller screens */
+    }
+    
+    .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .sv-logo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    #navbar {
+        padding: 0.75rem 0;
+    }
+}
+
+/* Premium Icon Styles - Simplified Glow */
+.premium-icon {
+    /* Base styles for all premium icons */
+    position: relative; /* Needed for pseudo-element */
+    font-size: 2.8rem; /* Default size, can be overridden */
+    color: var(--secondary-accent);
+    transition: all 0.3s ease;
+    display: inline-flex; /* Use inline-flex */
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem; /* Default margin */
+    z-index: 1;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Add text shadow to icons */
+    /* Removed background clip text */
+}
+
+.premium-icon::after {
+    content: '';
+    position: absolute;
+    width: 120%; /* Slightly larger glow area */
+    height: 120%;
+    background: radial-gradient(circle, var(--secondary-accent) 0%, transparent 70%);
+    z-index: -1;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    filter: blur(15px); /* Stronger blur for glow */
+}
+
+.premium-icon:hover {
+    transform: scale(1.05); /* Slight scale on hover */
+}
+
+.premium-icon:hover::after {
+    opacity: 0.25; /* More subtle glow */
+    transform: scale(1);
+}
+
+/* Add styles for the mobile menu toggle icon change */
+.menu-toggle i.ri-close-line {
+    display: none;
+}
+
+.menu-toggle.active i.ri-menu-line {
+    display: none;
+}
+
+.menu-toggle.active i.ri-close-line {
+    display: block;
+}
+
+/* Apply 2x2 Grid for specific sections on medium screens and up */
+@media screen and (min-width: 768px) {
+    .projects-grid,
+    .cloud-future-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Social Icons Row Styles */
+.social-icons-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 2.2rem;
+    margin: 2.5rem 0 0 0;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 2.5rem;
+    transition: color 0.2s, transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.social-icon i {
+    font-size: 2.7rem;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    transition: color 0.2s, text-shadow 0.2s, transform 0.2s;
+}
+
+.social-icon span {
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    margin-top: 0.1rem;
+    text-align: center;
+    font-family: inherit;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.social-icon:hover,
+.social-icon:focus {
+    color: var(--primary-accent);
+    transform: translateY(-5px) scale(1.08);
+}
+
+.social-icon:hover i,
+.social-icon:focus i {
+    color: var(--primary-accent);
+    text-shadow: 0 4px 16px rgba(13,110,253,0.18);
+    transform: scale(1.12);
+}
